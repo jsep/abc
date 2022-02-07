@@ -1,13 +1,13 @@
 export class Timer {
 
-    private interval
+  private interval;
 
-    constructor(private ms = 1000) {
-        this.interval = setInterval(() => {
+  constructor(private ms = 1000) {
+    this.interval = setInterval(() => {
 
-        }, ms)
-    }
+    }, ms);
+  }
 
-    onTick(cb) {
-    }
+  onTick(cb) {
+  }
 }
