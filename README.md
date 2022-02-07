@@ -1,3 +1,2 @@
 # Always Be Coding Challenge (ABCC)
-
-Every I day or week try to complete a simple project. 
+Every day or week I try to complete a simple project. 
