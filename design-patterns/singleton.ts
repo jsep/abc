@@ -1,3 +1,15 @@
+/*
+ * Singleton design pattern is one of the most easy to implement pattern,
+ * the goal is to make sure there is only one instance of class
+ *
+ * Usages:
+ * Databases connections,
+ *
+ * Pros:
+ *
+ * Cons:
+ *
+ * */
 export class SimpleSingleton {
   private static instance: SimpleSingleton;
 
@@ -21,8 +33,4 @@ export class UsersApi {
   }
 
   private constructor(public version: string) {}
-
-  getUsers() {
-    return [{ name: 'Juan' }];
-  }
 }
