@@ -7,7 +7,6 @@ describe('Array', () => {
   });
 
   it('should create array', () => {
-    arr = new CustomArray();
     expect(arr).toBeInstanceOf(CustomArray);
   });
 
@@ -19,8 +18,7 @@ describe('Array', () => {
 
   describe('at()', () => {
     beforeEach(() => {
-      arr.push(1);
-      arr.push(2);
+      arr = arrayWithItems(2);
     });
     it('should get element at index', () => {
       expect(arr.at(0)).toEqual(1);
@@ -33,4 +31,29 @@ describe('Array', () => {
       expect(arr.at(-3)).toEqual(undefined);
     });
   });
+
+  describe('forEach()', () => {
+    it(' should call each time for each item', () => {
+      arr = arrayWithItems(3);
+      const cb = jest.fn();
+      arr.forEach(cb);
+
+      expect(cb).toHaveBeenCalledTimes(arr.length);
+      expect(cb).toBeCalledWith(1, 0, arr);
+      expect(cb).toBeCalledWith(2, 1, arr);
+      expect(cb).toBeCalledWith(3, 2, arr);
+    });
+  });
 });
+
+// Utils functions
+
+function arrayWithItems(num: number): CustomArray<number> {
+  let i = 1;
+  const arr = new CustomArray<number>();
+  while (i <= num) {
+    arr.push(i);
+    i++;
+  }
+  return arr;
+}

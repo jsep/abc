@@ -1,5 +1,6 @@
 export class CustomArray<T> {
   length = 0;
+
   push(item: T) {
     this[this.length] = item;
     this.length += 1;
@@ -17,5 +18,14 @@ export class CustomArray<T> {
    * */
   at(index: number) {
     return index >= 0 ? this[index] : this[this.length + index];
+  }
+
+  /**
+   * The forEach() method executes a provided function once for each array element.
+   * */
+  forEach(cb: (element?: T, index?: number, array?: CustomArray<T>) => void) {
+    for (let i = 0; i < this.length; i++) {
+      cb(this[i], i, this);
+    }
   }
 }
