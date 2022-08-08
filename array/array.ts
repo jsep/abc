@@ -28,4 +28,19 @@ export class CustomArray<T> {
       cb(this[i], i, this);
     }
   }
+
+  /**
+   * The concat() method is used to merge two or more arrays. This method does not change the
+   * existing arrays, but instead returns a new array.
+   * */
+  concat(...arrays: CustomArray<unknown>[]) {
+    arrays.unshift(this);
+    const result = new CustomArray<unknown>();
+    arrays.forEach((arr) => {
+      arr.forEach((item) => {
+        result.push(item);
+      });
+    });
+    return result;
+  }
 }
