@@ -23,13 +23,37 @@ describe('Daily problem #3 serialize/serialize binary tree', () => {
       expect(serialize(null)).toEqual('null');
     });
     it('tree without leafs', () => {
-      const tree: Node = {
-        val: '1',
-        left: null,
-        right: null,
-      };
-      // [1, []
-      expect(serialize(tree)).toEqual('[1, null, null]');
+      const tree = node('root');
+      // [root, []
+      expect(serialize(tree)).toEqual('[root, null, null]');
+    });
+    it('tree with only left', () => {
+      const tree = node('root', node('left'));
+      //
+      expect(serialize(tree)).toEqual('[root, [left, null, null], null]');
+    });
+    it('tree with only right', () => {
+      const tree = node('root', null, node('right'));
+      //
+      expect(serialize(tree)).toEqual('[root, null, [right, null, null]]');
+    });
+    it('nested tree', () => {
+      const tree = node('root', node('left'), node('right'));
+      //
+      expect(serialize(tree)).toEqual(
+        '[root, [left, null, null], [right, null, null]]'
+      );
+      expect(serialize(tree)).toEqual(
+        '[root, [left, [left.left, null, null], [left.right, null, null]], [right, null, null]]'
+      );
     });
   });
 });
+
+function node(val: string, left: Node = null, right: Node = null): Node {
+  return {
+    val,
+    left,
+    right,
+  };
+}

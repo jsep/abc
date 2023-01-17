@@ -25,14 +25,12 @@ export type Node = {
 // [root-val, [left, right]]
 // [root-val, [left, right]]
 export function serialize(node: Node): string {
-  if (node === null) {
+  if (node === null || !node.val) {
     return 'null';
   }
-  if (!node || (!node.left && !node.right)) {
-    return '[]';
-  }
-  return `[]`;
+  return `[${node.val}, ${serialize(node.left)}, ${serialize(node.right)}]`;
 }
+
 export function deserialize(s: string): Node {
   return JSON.parse(s);
 }
